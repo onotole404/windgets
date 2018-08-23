@@ -1,0 +1,19 @@
+item-icons ?= {
+	'Title 1': 'G'
+	'Title 2': '0'
+	'Title 3': '\e045'
+}
+
+for name, charcode in item-icons
+	[data-item-name=\'{name}\']:before
+		content charcode
+
+body
+	font 16px/1.5 font-family-main
+
+.windgets-desktop
+	background url(../../img/screen-bg.jpg) no-repeat center
+	background-size auto 60%
+
+	+on-screen(screens[mobile])
+		background-size 70% auto

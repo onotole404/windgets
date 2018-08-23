@@ -1,0 +1,130 @@
+.windgets-window
+	box-shadow 2px 2px 16px rgba(0, 0, 0, .25)
+	display flex
+	flex-direction column
+	position absolute
+
+	&.move
+		opacity .75
+
+	&:not(.transform)
+		transition transition-mode
+		transition-property bottom, left, right, top, height, width, opacity, visibility
+
+	&[data-state='fullscreen']
+	&[data-state='left']
+	&[data-state='right']
+		height 100% !important
+		top 0 !important
+
+		& ^[0]-resizer
+			display none
+
+	&[data-state='fullscreen']
+		left 0 !important
+		width 100% !important
+
+		& ^[0]-button[data-state='fullscreen']:before
+			content window-btn-icons[regular]
+
+	&[data-state='left']
+	&[data-state='right']
+		width 50% !important
+
+	&[data-state='left']
+		left 0 !important
+
+	&[data-state='right']
+		left 50% !important
+
+	&[data-state='tile']
+		opacity 0
+		visibility hidden
+
+		& ^[0]-body
+		& ^[0]-button
+		& ^[0]-resizer
+		& ^[0]-title
+			display none
+
+	&:not([data-state='tile'])
+		min-height 10 * quant-size
+		min-width 16 * quant-size
+
+	&.active
+		& ^[0]-head
+		& ^[0]-resizer
+			background control-active-bg-color
+
+	&-body
+		background window-body-bg-color
+		border solid control-fg-color
+		border-width 0 0 1px 1px
+		flex-grow 1
+		order 1
+		overflow auto
+		padding 2 * quant-size 1.5 * quant-size
+
+		&::-webkit-scrollbar
+			height quant-size
+			width quant-size
+
+		&::-webkit-scrollbar-thumb
+			background-color #a7b4bb
+
+		&::-webkit-scrollbar-track
+			background-color #e5e8e8
+
+	&-button
+	&-icon
+		color control-fg-color
+		flex-shrink 0
+		text-align center
+		transition transition-mode
+		width window-btn-size
+
+		&:before
+			font (window-btn-size * .4) \/window-btn-size font-family-icon
+
+		&:hover
+			background-color control-fg-color
+			color control-active-bg-color
+
+	&-button
+		for state, charcode in window-btn-icons
+			&[data-state={state}]:before
+				content charcode
+
+	&-head
+	&-resizer
+		background control-bg-color
+
+	&-head
+		cursor default
+		display flex
+		flex-shrink 0
+		justify-content center
+		order 0
+
+	&-resizer
+		radius = quant-size * 1.25
+		border-radius 50%
+		bottom - radius
+		cursor se-resize
+		height radius * 2
+		opacity .5
+		position absolute
+		right - radius
+		width radius * 2
+
+		&:hover
+			opacity .75
+
+	&-title
+		color control-fg-color
+		flex-grow 1
+		font 16px \/window-btn-size font-family-title
+		overflow hidden
+		text-align center
+		text-overflow ellipsis
+		white-space nowrap

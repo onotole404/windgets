@@ -1,0 +1,40 @@
+window-snaps ?= {
+	fullscreen: {
+		left: 0
+		right: 0
+	}
+	left: {
+		left: 0
+		right: 50%
+	}
+	right: {
+		left: 50%
+		right: 0
+	}
+	tile: {
+		left: 0
+		right: 0
+		top: 98%
+	}
+}
+
+.windgets-desktop
+	flex-grow 1
+	order 0
+	position relative
+
+	&:after
+		bottom 0
+		content ''
+		background overlay-color
+		opacity 0
+		position absolute
+		top 0
+		transition opacity transition-mode
+		z-index 250
+
+	for snap, style in window-snaps
+		&[data-window-snap={snap}]:after
+			opacity .5
+			for prop, rule in style
+				{prop} rule

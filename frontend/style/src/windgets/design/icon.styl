@@ -1,0 +1,16 @@
+.windgets-icon
+	color panel-icon-color
+	height panel-icon-size
+	text-align center
+	transition transition-mode
+	width panel-icon-size
+
+	&:before
+		font (panel-icon-size / 2) \/panel-icon-size font-family-icon
+
+	&:hover
+		background-color control-active-bg-color
+
+	&.active
+		background-color panel-icon-color
+		color control-active-bg-color

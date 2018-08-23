@@ -1,0 +1,12 @@
+on-screen(media-query)
+	@media media-query
+		&
+			{block}
+
+screens = {
+	mobile: '(max-width: 600px)'
+	non-mobile: '(min-width: 601px)'
+	tablet: '(min-width: 601px) and (max-width: 768px)'
+	non-desktop: '(max-width: 768px)'
+	desktop: '(min-width: 769px)'
+}
